@@ -1,0 +1,114 @@
+-- chatApplication.Chat definition
+
+CREATE TABLE `chat` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `senderId` int NOT NULL,
+  `receiverId` int NOT NULL,
+  `message` text NOT NULL,
+  `timestamp` timestamp,
+  PRIMARY KEY (`id`),
+  KEY `senderId` (`senderId`),
+  KEY `receiverId` (`receiverId`),
+  CONSTRAINT `chat_ibfk_1` FOREIGN KEY (`senderId`) REFERENCES `users` (`id`),
+  CONSTRAINT `chat_ibfk_2` FOREIGN KEY (`receiverId`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+-- chatApplication.Users definition
+
+CREATE TABLE `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+-- chatApplication.Friends definition
+
+CREATE TABLE `Friends` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `userId` int DEFAULT NULL,
+  `friendId` int DEFAULT NULL,
+  `accepted` tinyint DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`),
+  KEY `friendId` (`friendId`),
+  CONSTRAINT `friends_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `Users` (`id`),
+  CONSTRAINT `friends_ibfk_2` FOREIGN KEY (`friendId`) REFERENCES `Users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+
+
+INSERT INTO users (email, username) VALUES ('john.doe@gmail.com', 'JohnDoe');
+INSERT INTO users (email, username) VALUES ('jane.smith@yahoo.com', 'JaneSmith');
+INSERT INTO users (email, username) VALUES ('michael.jones@hotmail.com', 'MichaelJones');
+INSERT INTO users (email, username) VALUES ('susan.wilson@gmail.com', 'SusanWilson');
+INSERT INTO users (email, username) VALUES ('david.brown@yahoo.com', 'DavidBrown');
+INSERT INTO users (email, username) VALUES ('sarah.jackson@hotmail.com', 'SarahJackson');
+INSERT INTO users (email, username) VALUES ('robert.taylor@gmail.com', 'RobertTaylor');
+INSERT INTO users (email, username) VALUES ('laura.davis@yahoo.com', 'LauraDavis');
+INSERT INTO users (email, username) VALUES ('kevin.anderson@hotmail.com', 'KevinAnderson');
+INSERT INTO users (email, username) VALUES ('emily.wilson@gmail.com', 'EmilyWilson');
+INSERT INTO users (email, username) VALUES ('james.johnson@yahoo.com', 'JamesJohnson');
+INSERT INTO users (email, username) VALUES ('jessica.davis@hotmail.com', 'JessicaDavis');
+INSERT INTO users (email, username) VALUES ('matthew.brown@gmail.com', 'MatthewBrown');
+INSERT INTO users (email, username) VALUES ('olivia.smith@yahoo.com', 'OliviaSmith');
+INSERT INTO users (email, username) VALUES ('william.jones@hotmail.com', 'WilliamJones');
+INSERT INTO users (email, username) VALUES ('ava.anderson@gmail.com', 'AvaAnderson');
+INSERT INTO users (email, username) VALUES ('daniel.jackson@yahoo.com', 'DanielJackson');
+INSERT INTO users (email, username) VALUES ('mia.taylor@hotmail.com', 'MiaTaylor');
+INSERT INTO users (email, username) VALUES ('ethan.wilson@gmail.com', 'EthanWilson');
+INSERT INTO users (email, username) VALUES ('emma.brown@yahoo.com', 'EmmaBrown');
+
+
+
+
+
+
+
+
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (1, 2, 'Hey Jane, how are you?', '2023-09-17 10:15:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (2, 1, "Hi John! I'm doing well, thanks. How about you?", '2023-09-17 10:20:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (3, 4, 'Hey Susan! Do you have plans for the weekend?', '2023-09-17 10:25:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (4, 3, 'Not really, David. Maybe catch up on some reading.', '2023-09-17 10:30:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (5, 6, "Hi Sarah! How's your day going?", '2023-09-17 10:35:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (6, 5, "Hey Michael! It's been pretty good. How about you?", '2023-09-17 10:40:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (7, 8, 'Hi Robert! Did you finish that project?', '2023-09-17 10:45:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (8, 7, 'Almost, Laura. Just a few more tweaks.', '2023-09-17 10:50:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (9, 10, 'Hey Kevin! Are you free for a call later?', '2023-09-17 10:55:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (10, 9, 'Sure, Emily. Just let me know when.', '2023-09-17 11:00:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (11, 12, 'Hi James! How was your day?', '2023-09-17 11:05:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (12, 11, 'Pretty good, Jessica. Thanks for asking.', '2023-09-17 11:10:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (13, 14, 'Hey Matthew! Are you going to the party on Saturday?', '2023-09-17 11:15:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (14, 13, "I'm planning to, Olivia. How about you?", '2023-09-17 11:20:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (15, 16, 'Hi William! What's up?', '2023-09-17 11:25:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (16, 15, 'Not much, Ava. Just working on some stuff.', '2023-09-17 11:30:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (17, 18, 'Hey Daniel! Did you get that email?', '2023-09-17 11:35:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (18, 17, 'Yes, Mia. I'll take care of it.', '2023-09-17 11:40:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (19, 20, 'Hi Ethan! How's the new project coming along?', '2023-09-17 11:45:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (20, 19, 'It's going well, Emma. Making good progress.', '2023-09-17 11:50:00');
+
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (1, 3, 'Hey Susan! How are you doing today?', '2023-09-17 12:00:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (3, 1, 'Hi John! I''m doing well, thanks.', '2023-09-17 12:05:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (5, 7, 'Hi Robert! Need any help with the project?', '2023-09-17 12:10:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (7, 5, 'Thanks, Michael. I think I''m good for now.', '2023-09-17 12:15:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (9, 11, 'Hey James! Did you catch that new movie?', '2023-09-17 12:20:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (11, 9, 'Not yet, Kevin. Planning to see it this weekend.', '2023-09-17 12:25:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (13, 15, 'Hey William! Have you tried that new restaurant?', '2023-09-17 12:30:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (15, 13, 'I haven''t, Matthew. How was it?', '2023-09-17 12:35:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (17, 19, 'Hi Ethan! Do you have any travel plans?', '2023-09-17 12:40:00');
+INSERT INTO chat (senderId, receiverId, message, timestamp) VALUES (19, 17, 'I''m thinking about it, Daniel. Maybe a short trip.', '2023-09-17 12:45:00');
+
+
+
+
+SELECT * FROM chat;
+
+select * from users;
